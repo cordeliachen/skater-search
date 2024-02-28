@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block content %}
+
+<script>
+  var names = {{names|tojson}}
+  console.log(names);
+</script>
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'home.js') }}"
+></script>
+
+<div id="skater-list"></div>
+
+{% endblock %}

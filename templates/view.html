@@ -1,0 +1,10 @@
+{% extends "layout.html" %} {% block content %}
+<script>
+  var skater = {{skater|tojson}}
+</script>
+
+<h2>{{ skater.name }}</h2>
+<img src="{{ skater.image }}" alt="{{ skater.name }}" class="skater-image" />
+<p>{{ skater.description }}</p>
+<p>Birth Year: {{ skater.birth_year }}</p>
+{% endblock %}
