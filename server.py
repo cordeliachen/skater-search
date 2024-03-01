@@ -109,9 +109,19 @@ def home():
     return render_template("home.html", names=get_names())
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
-    return render_template("search.html")
+    if request.method == "POST":
+        search_term = request.form["search"]
+        matching_skaters = []
+
+        for skater_id, skater_info in data.items():
+            if search_term.lower() in skater_info["name"].lower():
+                matching_skaters.append(skater_info)
+        return render_template(
+            "search_results.html", searchTerm=search_term, result=matching_skaters
+        )
+    return render_template("home.html", names=get_names())
 
 
 @app.route("/view/<int:id>")
@@ -122,15 +132,10 @@ def view(id):
 
 
 # AJAX FUNCTIONS
-@app.route("/lookup", methods=["GET", "POST"])
-def lookup():
-    search_term = request.get_json()
-    matching_skaters = []
+# @app.route("/lookup", methods=["GET", "POST"])
+# def lookup():
 
-    for skater_id, skater_info in data.items():
-        if search_term.lower() in skater_info["name"].lower():
-            matching_skaters.append(skater_info)
-    return jsonify(matching_skaters)
+#     return jsonify(matching_skaters)
 
 
 if __name__ == "__main__":
