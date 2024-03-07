@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  $("#search-query").empty();
-  $("#search-query").append(
-    '<h2>Search results for "' + searchTerm + '":</h2>'
-  );
+  // $("#search-query").empty();
+  // $("#search-query").append(
+  //   '<h2>Search results for "' + searchTerm + '":</h2>'
+  // );
 
   if (result.length === 0) {
     $("#search-results").empty().append("<li>No results found</li>");

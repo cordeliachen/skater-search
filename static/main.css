@@ -1,5 +1,44 @@
-#hello_div{
-    padding-top:  10px;
-    padding-bottom:  10px;
-    color: green;
+.base {
+  background-color: #1b4b5a;
+}
+
+.accent {
+  background-color: #f55449;
+}
+
+.txt {
+  font-family: "Gill Sans", sans-serif !important;
+  color: #424242;
+}
+
+.white-txt {
+  color: white;
+}
+
+.lg-txt {
+  color: grey;
+}
+
+.navbar {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+  aspect-ratio: 1/1;
+}
+
+#home-image {
+  width: 100%;
+  height: auto;
 }

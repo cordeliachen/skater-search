@@ -1,18 +1,38 @@
 {% extends "layout.html" %} {% block content %}
 
-<script>
-  var searchTerm = {{searchTerm|tojson}}
-  console.log(searchTerm);
-  var result = {{result|tojson}}
-</script>
+<div id="search-query">
+  <div class="txt title">
+    {% if results %} {{ results|length }} search results found for "{{
+    searchTerm }}" {% else %} No matching results found for "{{ searchTerm }}"
+    {% endif %}
+  </div>
+</div>
 
-<script
-  type="text/javascript"
-  src="{{ url_for('static', filename = 'search_results.js') }}"
-></script>
+<div id="search-results">
+  {% if results %}
+  <div class="row">
+    {% for skater_info in results %}
 
-<div id="search-query"></div>
-
-<div id="search-results"></div>
+    <div class="col-md-4 mb-4">
+      <a href="/view/{{ skater_info['id'] }}" class="card-link">
+        <div class="card h-100">
+          <img
+            src="{{ skater_info['image'] }}"
+            alt="{{ skater_info['name'] }}"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title txt">{{ skater_info['name'] }}</h5>
+            <p class="card-text txt lg-txt">
+              {{ skater_info['country'] }}<br />{{ skater_info['discipline'] }}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 
 {% endblock %}
