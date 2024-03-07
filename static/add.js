@@ -8,7 +8,9 @@ $(document).ready(function () {
     var coach = $("#coach").val().trim();
     var began_skating = parseInt($("#began_skating").val().trim());
     var age = parseInt($("#age").val().trim());
-    var birthday = $("#birthday").val().trim();
+    var birthdayMonth = $("#birthday-month").val();
+    var birthdayDay = parseInt($("#birthday-day").val().trim());
+    var birthdayYear = parseInt($("#birthday-year").val().trim());
     var birthplace = $("#birthplace").val().trim();
 
     // Check for empty fields or invalid input
@@ -19,7 +21,11 @@ $(document).ready(function () {
     var isCoachValid = isCoachOk(coach);
     var isBeganSkatingValid = isBeganSkatingOk(began_skating);
     var isAgeValid = isAgeOk(age);
-    var isBirthdayValid = isBirthdayOk(birthday);
+    var isBirthdayValid = isBirthdayOk(
+      birthdayMonth,
+      birthdayDay,
+      birthdayYear
+    );
     var isBirthplaceValid = isBirthplaceOk(birthplace);
 
     // Check if all fields are valid before proceeding
@@ -43,7 +49,7 @@ $(document).ready(function () {
         coach: coach,
         began_skating: began_skating,
         age: age,
-        birthday: birthday,
+        birthday: birthdayMonth + " " + birthdayDay + ", " + birthdayYear,
         birthplace: birthplace,
         results: {},
       };
@@ -133,8 +139,8 @@ $(document).ready(function () {
   }
 
   function isBeganSkatingOk(began_skating) {
-    if (isNaN(began_skating)) {
-      $("#began-skating-error").text("Began skating must be a number").show();
+    if (isNaN(began_skating) || began_skating < 1990 || began_skating > 2024) {
+      $("#began-skating-error").text("Began skating year is invalid").show();
       return false;
     } else {
       $("#began-skating-error").hide();
@@ -143,8 +149,8 @@ $(document).ready(function () {
   }
 
   function isAgeOk(age) {
-    if (isNaN(age)) {
-      $("#age-error").text("Age must be a number").show();
+    if (isNaN(age) || age < 1 || age > 100) {
+      $("#age-error").text("Age is invalid").show();
       return false;
     } else {
       $("#age-error").hide();
@@ -152,9 +158,19 @@ $(document).ready(function () {
     }
   }
 
-  function isBirthdayOk(birthday) {
-    if (birthday.trim() === "") {
-      $("#birthday-error").text("Birthday is required").show();
+  function isBirthdayOk(birthdayMonth, birthdayDay, birthdayYear) {
+    if (!birthdayMonth) {
+      $("#birthday-error").text("Birth month is required").show();
+      return false;
+    } else if (isNaN(birthdayDay) || birthdayDay < 1 || birthdayDay > 31) {
+      $("#birthday-error").text("Birthday day is invalid").show();
+      return false;
+    } else if (
+      isNaN(birthdayYear) ||
+      birthdayYear < 1900 ||
+      birthdayYear > new Date().getFullYear()
+    ) {
+      $("#birthday-error").text("Birthday year is invalid").show();
       return false;
     } else {
       $("#birthday-error").hide();

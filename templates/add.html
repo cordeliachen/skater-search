@@ -37,10 +37,37 @@
     <div id="age-error" class="error-msg"></div>
   </div>
   <div class="row input-field">
-    <label for="birthday">Birthday:</label>
-    <input type="text" id="birthday" name="birthday" />
+    <label> Birthday:</label>
+    <select id="birthday-month" class="form-select">
+      <option value="" disabled selected>Month</option>
+      <option value="January">January</option>
+      <option value="February">February</option>
+      <option value="March">March</option>
+      <option value="April">April</option>
+      <option value="May">May</option>
+      <option value="June">June</option>
+      <option value="July">July</option>
+      <option value="August">August</option>
+      <option value="September">September</option>
+      <option value="October">October</option>
+      <option value="November">November</option>
+      <option value="December">December</option>
+    </select>
+    <input
+      type="number"
+      id="birthday-day"
+      class="form-control col-md-1"
+      placeholder="Day"
+    />
+    <input
+      type="number"
+      id="birthday-year"
+      class="form-control col-md-1"
+      placeholder="Year"
+    />
     <div id="birthday-error" class="error-msg"></div>
   </div>
+
   <div class="row input-field">
     <label for="birthplace">Birthplace:</label>
     <input type="text" id="birthplace" name="birthplace" />
