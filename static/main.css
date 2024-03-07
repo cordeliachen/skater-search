@@ -19,6 +19,11 @@
   color: grey;
 }
 
+.highlight {
+  background-color: yellow; /* Change this to the desired highlight color */
+  font-weight: bold; /* Make the highlighted text bold */
+}
+
 .navbar {
   margin-bottom: 30px;
 }

@@ -27,7 +27,11 @@ def search():
         matching_skaters = []
 
         for skater_id, skater_info in data.items():
-            if search_term.lower() in skater_info["name"].lower():
+            if (
+                search_term.lower() in skater_info["name"].lower()
+                or search_term.lower() in skater_info["country"].lower()
+                or search_term.lower() in skater_info["discipline"].lower()
+            ):
                 matching_skaters.append(skater_info)
         return render_template(
             "search_results.html", searchTerm=search_term, results=matching_skaters

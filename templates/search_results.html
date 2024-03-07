@@ -2,9 +2,8 @@
 
 <div id="search-query">
   <div class="txt title">
-    {% if results %} {{ results|length }} search results found for "{{
-    searchTerm }}" {% else %} No matching results found for "{{ searchTerm }}"
-    {% endif %}
+    {% if results %} {{ results|length }} results found for "{{ searchTerm }}"
+    {% else %} No results found for "{{ searchTerm }}" {% endif %}
   </div>
 </div>
 
@@ -23,9 +22,8 @@
           />
           <div class="card-body">
             <h5 class="card-title txt">{{ skater_info['name'] }}</h5>
-            <p class="card-text txt lg-txt">
-              {{ skater_info['country'] }}<br />{{ skater_info['discipline'] }}
-            </p>
+            <p class="card-text txt lg-txt">{{ skater_info['country'] }}</p>
+            <p class="card-text txt lg-txt">{{ skater_info['discipline']}}</p>
           </div>
         </div>
       </a>
@@ -35,4 +33,13 @@
   {% endif %}
 </div>
 
+<script>
+  var searchTerm = {{searchTerm|tojson}}
+  console.log(searchTerm);
+</script>
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename = 'search_results.js') }}"
+></script>
 {% endblock %}

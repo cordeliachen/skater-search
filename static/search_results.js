@@ -1,24 +1,34 @@
 $(document).ready(function () {
-  // $("#search-query").empty();
-  // $("#search-query").append(
-  //   '<h2>Search results for "' + searchTerm + '":</h2>'
-  // );
+  function highlightPartialWords(searchTerm, text) {
+    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(escapedTerm, "gi");
+    const highlightedText = text.replace(
+      regex,
+      (match) => `<span class="accent white-txt">${match}</span>`
+    );
 
-  if (result.length === 0) {
-    $("#search-results").empty().append("<li>No results found</li>");
-  } else {
-    display_search_result(result); // Pass the entire result object
+    console.log(searchTerm);
+    console.log(text);
+    return highlightedText;
   }
 
-  function display_search_result(result) {
-    $("#search-results").empty(); // Clear previous results
-    result.forEach(function (skater) {
-      // Generate the link dynamically for each search result
-      var link = $("<a>")
-        .attr("href", "/view/" + skater.id)
-        .text(skater.name);
-      // Append the link to the search results list
-      $("#search-results").append($("<li>").append(link));
+  // Function to highlight partial words in skater information
+  function highlightSkaterInfo(searchTerm) {
+    const skaterTitles = document.querySelectorAll(".card-title");
+    const skaterTexts = document.querySelectorAll(".card-text");
+
+    skaterTitles.forEach((title) => {
+      const originalText = title.textContent;
+      title.innerHTML = highlightPartialWords(searchTerm, originalText);
+    });
+
+    skaterTexts.forEach((text) => {
+      const originalText = text.textContent;
+      text.innerHTML = highlightPartialWords(searchTerm, originalText);
     });
   }
+
+  // Call the highlightSkaterInfo function with the searchTerm provided
+
+  highlightSkaterInfo(searchTerm);
 });
