@@ -43,7 +43,20 @@
   aspect-ratio: 1/1;
 }
 
+.input-field {
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  color: #f55449;
+  margin-left: 10px;
+}
+
 #home-image {
   width: 100%;
   height: auto;
+}
+
+#add-btn {
+  margin-left: 10px;
 }

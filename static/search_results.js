@@ -6,9 +6,6 @@ $(document).ready(function () {
       regex,
       (match) => `<span class="accent white-txt">${match}</span>`
     );
-
-    console.log(searchTerm);
-    console.log(text);
     return highlightedText;
   }
 
