@@ -1,5 +1,69 @@
 $(document).ready(function () {
   $("#submit-btn").click(function () {
+    var new_skater = checkAllFields();
+    if (new_skater) {
+      save_skater(new_skater);
+    }
+  });
+
+  $("#edit-btn").click(function () {
+    var new_skater = checkAllFields();
+    if (new_skater) {
+      new_skater.id = id;
+      edit_skater(new_skater);
+    }
+  });
+
+  function save_skater(new_skater) {
+    $.ajax({
+      type: "POST",
+      url: "save_skater",
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(new_skater),
+      success: function (id) {
+        $("input[type='text']").val("");
+        $("input[type='number']").val("");
+        $("#birthday-month").val("");
+        $("#name").focus();
+
+        $("#success-message")
+          .text("New item successfully created.")
+          .append(
+            '<a class="btn accent white-txt txt" id="see-it-btn" href="/view/' +
+              id.id +
+              '">See it here</a>'
+          );
+      },
+      error: function (request, status, error) {
+        console.log("Error");
+        console.log(request);
+        console.log(status);
+        console.log(error);
+      },
+    });
+  }
+
+  function edit_skater(new_skater) {
+    $.ajax({
+      type: "POST",
+      url: "edit_skater",
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify(new_skater),
+      success: function (id) {
+        window.location.href = "/view/" + id.id;
+      },
+      error: function (request, status, error) {
+        console.log("Error");
+        console.log(request);
+        console.log(status);
+        console.log(error);
+      },
+    });
+  }
+
+  function checkAllFields() {
     // Retrieve values from input fields
     var name = $("#name").val().trim();
     var image = $("#image").val().trim();
@@ -28,19 +92,21 @@ $(document).ready(function () {
     );
     var isBirthplaceValid = isBirthplaceOk(birthplace);
 
-    // Check if all fields are valid before proceeding
+    // Return false if any check fails
     if (
-      isNameValid &&
-      isImageValid &&
-      isCountryValid &&
-      isDisciplineValid &&
-      isCoachValid &&
-      isBeganSkatingValid &&
-      isAgeValid &&
-      isBirthdayValid &&
-      isBirthplaceValid
+      !isNameValid ||
+      !isImageValid ||
+      !isCountryValid ||
+      !isDisciplineValid ||
+      !isCoachValid ||
+      !isBeganSkatingValid ||
+      !isAgeValid ||
+      !isBirthdayValid ||
+      !isBirthplaceValid
     ) {
-      // Create new skater object
+      return false;
+    } else {
+      // Return new skater object
       var new_skater = {
         name: name,
         image: image,
@@ -53,39 +119,8 @@ $(document).ready(function () {
         birthplace: birthplace,
         results: {},
       };
-
-      // Call save_skater function
-      save_skater(new_skater);
+      return new_skater;
     }
-  });
-
-  function save_skater(new_skater) {
-    $.ajax({
-      type: "POST",
-      url: "save_skater",
-      dataType: "json",
-      contentType: "application/json; charset=utf-8",
-      data: JSON.stringify(new_skater),
-      success: function (id) {
-        $("input[type='text']").val("");
-        $("input[type='number']").val("");
-        $("#name").focus();
-
-        $("#success-message")
-          .text("New item successfully created.")
-          .append(
-            '<a class="btn accent white-txt txt" id="see-it-btn" href="/view/' +
-              id.id +
-              '">See it here</a>'
-          );
-      },
-      error: function (request, status, error) {
-        console.log("Error");
-        console.log(request);
-        console.log(status);
-        console.log(error);
-      },
-    });
   }
 
   function isNameOk(name) {

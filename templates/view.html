@@ -1,5 +1,46 @@
 {% extends "layout.html" %} {% block content %}
 
-<h2>{{ skater.name }}</h2>
-<img src="{{ skater.image }}" alt="{{ skater.name }}" class="skater-image" />
+<div class="row">
+  <div class="col-md-8">
+    <div
+      class="row title txt d-flex justify-content-between align-items-center"
+    >
+      <div>{{ skater.name }}</div>
+      <a
+        class="btn accent white-txt txt lg"
+        id="add-btn"
+        href="/edit/{{ skater.id }}"
+        >Edit</a
+      >
+    </div>
+    <div class="row info-card">
+      <div class="col-md-4">
+        <div class="row txt">Age:</div>
+        <div class="row txt bold">{{ skater.age }}</div>
+      </div>
+      <div class="col-md-4">
+        <div class="row txt">Country:</div>
+        <div class="row txt bold">{{ skater.country }}</div>
+      </div>
+      <div class="col-md-4">
+        <div class="row txt">Discipline:</div>
+        <div class="row txt bold">{{ skater.discipline }}</div>
+      </div>
+    </div>
+
+    <div class="row title txt">
+      <div class="col-md-4">Olympic Games</div>
+      <div class="col-md-4">World Championships</div>
+      <div class="col-md-4">Grand Prix Final</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <img src="{{ skater.image }}" alt="{{ skater.name }}" class="square-crop" />
+    <div class="row title txt">Personal details</div>
+    <div class="row txt bold">Coach: {{ skater.coach }}</div>
+    <div class="row txt bold">Began skating: {{ skater.began_skating }}</div>
+    <div class="row txt">Birthday: {{ skater.birthday }}</div>
+    <div class="row txt">Birth place: {{ skater.birtplace }}</div>
+  </div>
+</div>
 {% endblock %}

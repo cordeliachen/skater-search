@@ -60,6 +60,13 @@ def add():
     return render_template("add.html")
 
 
+@app.route("/edit/<int:id>")
+def edit(id):
+    skater = data.get(str(id))
+    if skater:
+        return render_template("edit.html", skater=skater)
+
+
 # AJAX FUNCTIONS
 @app.route("/save_skater", methods=["POST"])
 def save_skater():
@@ -67,7 +74,6 @@ def save_skater():
     global current_id
 
     json_data = request.get_json()
-    print(json_data)
     name = json_data["name"]
     image = json_data["image"]
     country = json_data["country"]
@@ -98,6 +104,41 @@ def save_skater():
 
     # Send back the new skater entry's id
     return jsonify(id=new_id)
+
+
+@app.route("/edit/edit_skater", methods=["POST"])
+def edit_skater():
+    json_data = request.get_json()
+    print(json_data)
+    id = json_data["id"]
+    name = json_data["name"]
+    image = json_data["image"]
+    country = json_data["country"]
+    discipline = json_data["discipline"]
+    coach = json_data["coach"]
+    began_skating = json_data["began_skating"]
+    age = json_data["age"]
+    birthday = json_data["birthday"]
+    birthplace = json_data["birthplace"]
+
+    # Add new skater entry to the array with a new id
+    new_skater_entry = {
+        "id": id,
+        "name": name,
+        "image": image,
+        "country": country,
+        "discipline": discipline,
+        "coach": coach,
+        "began_skating": began_skating,
+        "age": age,
+        "birthday": birthday,
+        "birthplace": birthplace,
+        "results": {},
+    }
+    data[str(id)] = new_skater_entry
+
+    # Send back the new skater entry's id
+    return jsonify(id=id)
 
 
 if __name__ == "__main__":

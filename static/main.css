@@ -6,6 +6,10 @@
   background-color: #f55449;
 }
 
+.lg {
+  background-color: grey;
+}
+
 .txt {
   font-family: "Gill Sans", sans-serif !important;
   color: #424242;
@@ -17,6 +21,10 @@
 
 .lg-txt {
   color: grey;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .highlight {
@@ -35,7 +43,7 @@
   margin-bottom: 20px;
 }
 
-.card-img-top {
+.square-crop {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -50,6 +58,14 @@
 .error-msg {
   color: #f55449;
   margin-left: 10px;
+}
+
+.info-card {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #f55449;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 #home-image {
