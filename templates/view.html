@@ -1,46 +1,63 @@
 {% extends "layout.html" %} {% block content %}
 
-<div class="row">
+<div class="row txt">
   <div class="col-md-8">
     <div
-      class="row title txt d-flex justify-content-between align-items-center"
+      class="row title d-flex justify-content-between align-items-center base"
+      id="skater-name"
     >
       <div>{{ skater.name }}</div>
       <a
-        class="btn accent white-txt txt lg"
+        class="btn accent white-txt lg"
         id="add-btn"
         href="/edit/{{ skater.id }}"
         >Edit</a
       >
     </div>
+
     <div class="row info-card">
       <div class="col-md-4">
-        <div class="row txt">Age:</div>
-        <div class="row txt bold">{{ skater.age }}</div>
+        <div class="row">Age:</div>
+        <div class="row bold">{{ skater.age }}</div>
       </div>
       <div class="col-md-4">
-        <div class="row txt">Country:</div>
-        <div class="row txt bold">{{ skater.country }}</div>
+        <div class="row">Country:</div>
+        <div class="row bold">{{ skater.country }}</div>
       </div>
       <div class="col-md-4">
-        <div class="row txt">Discipline:</div>
-        <div class="row txt bold">{{ skater.discipline }}</div>
+        <div class="row">Discipline:</div>
+        <div class="row bold">{{ skater.discipline }}</div>
       </div>
     </div>
-
-    <div class="row title txt">
-      <div class="col-md-4">Olympic Games</div>
-      <div class="col-md-4">World Championships</div>
-      <div class="col-md-4">Grand Prix Final</div>
+    <div class="row title">Competition history</div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row comp-titles">Olympic Games</div>
+        {% for result in skater.results.olympics %}
+        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-md-4">
+        <div class="row comp-titles">World Championships</div>
+        {% for result in skater.results.worlds %}
+        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-md-4">
+        <div class="row comp-titles">Grand Prix Final</div>
+        {% for result in skater.results.gpf %}
+        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        {% endfor %}
+      </div>
     </div>
   </div>
   <div class="col-md-4">
     <img src="{{ skater.image }}" alt="{{ skater.name }}" class="square-crop" />
-    <div class="row title txt">Personal details</div>
-    <div class="row txt bold">Coach: {{ skater.coach }}</div>
-    <div class="row txt bold">Began skating: {{ skater.began_skating }}</div>
-    <div class="row txt">Birthday: {{ skater.birthday }}</div>
-    <div class="row txt">Birth place: {{ skater.birtplace }}</div>
+    <div class="row title">Personal details</div>
+    <div class="row">Coach: {{ skater.coach }}</div>
+    <div class="row">Began skating: {{ skater.began_skating }}</div>
+    <div class="row">Birthday: {{ skater.birthday }}</div>
+    <div class="row">Birth place: {{ skater.birthplace }}</div>
   </div>
 </div>
 {% endblock %}

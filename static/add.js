@@ -14,6 +14,16 @@ $(document).ready(function () {
     }
   });
 
+  $("#discard-btn").click(function () {
+    // Show a confirmation dialog
+    var isConfirmed = confirm("Are you sure you want to discard changes?");
+
+    // If user confirms, redirect to the view page
+    if (isConfirmed) {
+      window.location.href = "/view/" + id;
+    }
+  });
+
   function save_skater(new_skater) {
     $.ajax({
       type: "POST",

@@ -1,5 +1,5 @@
 .base {
-  background-color: #1b4b5a;
+  background-color: #b7eeff;
 }
 
 .accent {
@@ -13,6 +13,7 @@
 .txt {
   font-family: "Gill Sans", sans-serif !important;
   color: #424242;
+  font-size: 18px;
 }
 
 .white-txt {
@@ -30,10 +31,6 @@
 .highlight {
   background-color: yellow; /* Change this to the desired highlight color */
   font-weight: bold; /* Make the highlighted text bold */
-}
-
-.navbar {
-  margin-bottom: 30px;
 }
 
 .title {
@@ -68,9 +65,52 @@
   padding: 10px;
 }
 
+/* Additional CSS for the card index */
+.card {
+  position: relative;
+}
+
+.card-img-top {
+  position: relative;
+}
+
+.card-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.comp-titles {
+  font-size: 24px;
+}
+
 #home-image {
   width: 100%;
   height: auto;
+}
+
+#intro {
+  padding: 80px;
+}
+
+#intro-txt {
+  padding-left: 100px;
+  padding-right: 100px;
+
+  padding-top: 50px;
+}
+
+#skater-name {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #add-btn {

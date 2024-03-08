@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -9,6 +10,18 @@ with open("data.json") as f:
     data = json.load(f)
 
 current_id = len(data)
+
+
+def parse_date(date_str):
+    # Parse the string date into a datetime object
+    date_obj = datetime.strptime(date_str, "%B %d, %Y")
+
+    # Extract month, day, and year
+    month = date_obj.strftime("%B")
+    day = date_obj.day
+    year = date_obj.year
+
+    return month, day, year
 
 
 # ROUTES
@@ -64,7 +77,14 @@ def add():
 def edit(id):
     skater = data.get(str(id))
     if skater:
-        return render_template("edit.html", skater=skater)
+        month, day, year = parse_date(skater["birthday"])
+        return render_template(
+            "edit.html",
+            skater=skater,
+            birth_month=month,
+            birth_day=day,
+            birth_year=year,
+        )
 
 
 # AJAX FUNCTIONS

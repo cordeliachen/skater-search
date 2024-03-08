@@ -55,7 +55,7 @@
   <div class="row input-field">
     <label> Birthday:</label>
     <select id="birthday-month" class="form-select">
-      <option value="" disabled selected>Month</option>
+      <option value="{{ birth_month }}" selected>{{ birth_month }}</option>
       <option value="January">January</option>
       <option value="February">February</option>
       <option value="March">March</option>
@@ -74,14 +74,14 @@
       id="birthday-day"
       class="form-control col-md-1"
       placeholder="Day"
-      value="{{ skater.birthday_day }}"
+      value="{{ birth_day }}"
     />
     <input
       type="number"
       id="birthday-year"
       class="form-control col-md-1"
       placeholder="Year"
-      value="{{ skater.birthday_year }}"
+      value="{{ birth_year }}"
     />
     <div id="birthday-error" class="error-msg"></div>
   </div>

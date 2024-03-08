@@ -1,32 +1,31 @@
 {% extends "layout.html" %} {% block content %}
 <div class="row">
   <!-- Intro section -->
-  <div class="col-md-4 intro">
-    <div>
+  <div class="row base" id="intro">
+    <div class="col-md-8 txt" id="intro-txt">
+      <div class="title">Welcome to Skater Search!</div>
+      <div>
+        Here, you can search for skaters using their name, country, or
+        discipline to see their competition history. If you want to quickly
+        check up on how your favorite figure skaters have been performing,
+        you've come to the right place!
+      </div>
+    </div>
+    <div class="col-md-4">
       <img
-        src="https://myhero.com/images/guest/g269201/hero94738/YuNaKim.jpg
+        src="../static/logo2.png
               "
-        alt="Homepage image of Yuna Kim doing a spin"
+        alt="White skater silhouette"
         id="home-image"
       />
     </div>
-    <div class="title txt">
-      Welcome to<br />
-      Skater Search!
-    </div>
-    <div class="txt">
-      Here, you can search for skaters using their name, country, or discipline
-      to see their competition history. If you want to quickly check up on how
-      your favorite figure skaters have been performing, you've come to the
-      right place!
-    </div>
   </div>
   <!-- Skaters section -->
-  <div class="col-md-8 skaters">
+  <div class="row skaters">
     <div class="title txt">Top Skaters by Medal Count</div>
     <div class="row">
       {% for skater_id, skater_info in data.items() %}
-      <div class="col-md-4 mb-4">
+      <div class="col-md-3 mb-4">
         <a href="/view/{{ skater_id }}" class="card-link">
           <div class="card h-100">
             <img
@@ -35,6 +34,9 @@
               class="card-img-top square-crop"
             />
             <div class="card-body">
+              <div class="card-index txt white-txt accent">
+                {{ loop.index }}
+              </div>
               <h5 class="card-title txt">{{ skater_info['name'] }}</h5>
               <p class="card-text txt lg-txt">{{ skater_info['country'] }}</p>
               <p class="card-text txt lg-txt">{{ skater_info['discipline']}}</p>
