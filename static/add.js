@@ -1,4 +1,37 @@
 $(document).ready(function () {
+  var deletedOlympicsIndices = [];
+  var deletedWorldsIndices = [];
+  var deletedGpfIndices = [];
+
+  // Function to handle deletion of an item
+  function deleteItem(type, index) {
+    switch (type) {
+      case "olympics":
+        deletedOlympicsIndices.push(index);
+        break;
+      case "worlds":
+        deletedWorldsIndices.push(index);
+        break;
+      case "gpf":
+        deletedGpfIndices.push(index);
+        break;
+    }
+    // Remove the item from the UI
+    $("#" + type + "-results-submitted")
+      .find("[data-index='" + index + "']")
+      .remove();
+    console.log(deletedOlympicsIndices);
+    console.log(deletedWorldsIndices);
+    console.log(deletedGpfIndices);
+  }
+
+  // Event listener for delete buttons
+  $(document).on("click", ".delete-btn", function () {
+    var type = $(this).data("type");
+    var index = $(this).data("index");
+    deleteItem(type, index);
+  });
+
   var olympicsResults = [];
   var worldChampionshipResults = [];
   var grandPrixFinalResults = [];
@@ -72,6 +105,33 @@ $(document).ready(function () {
     var new_skater = checkAllFields();
     if (new_skater) {
       new_skater.id = id;
+
+      var olympicsResultsFinal = olympicsResults;
+      var worldChampionshipResultsFinal = worldChampionshipResults;
+      var grandPrixFinalResultsFinal = grandPrixFinalResults;
+
+      olympics.forEach(function (item, index) {
+        if (!deletedOlympicsIndices.includes(index + 1)) {
+          olympicsResultsFinal.push(item);
+        }
+      });
+      worlds.forEach(function (item, index) {
+        if (!deletedWorldsIndices.includes(index + 1)) {
+          worldChampionshipResultsFinal.push(item);
+        }
+      });
+      gpf.forEach(function (item, index) {
+        if (!deletedGpfIndices.includes(index + 1)) {
+          grandPrixFinalResultsFinal.push(item);
+        }
+      });
+
+      new_skater.results = {
+        olympics: olympicsResultsFinal,
+        worlds: worldChampionshipResultsFinal,
+        gpf: grandPrixFinalResultsFinal,
+      };
+
       edit_skater(new_skater);
     }
   });

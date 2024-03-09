@@ -117,14 +117,128 @@
       <div id="birthplace-error" class="error-msg"></div>
     </div>
   </div>
+
+  <div class="col-md-6 form">
+    <div class="row title subtitle txt">Competition history (optional)</div>
+
+    <!-- Olympic Results -->
+    <div class="row input-field">
+      <label>Olympic Games Results:</label>
+    </div>
+    <div class="row input-field">
+      <div class="row" id="olympics-results">
+        <div class="col-md-12" id="olympics-results-submitted">
+          {% for result in skater.results.olympics %}
+          <div class="row col-md-12" data-index="{{ loop.index }}">
+            Rank: {{ result.rank }}, Year: {{ result.year }}
+            <button
+              class="delete-btn btn lg white-txt"
+              data-type="olympics"
+              data-index="{{ loop.index }}"
+            >
+              X
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-12 result">
+          <input type="number" name="olympics-rank" placeholder="Rank" />
+          <input type="number" name="olympics-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="olympics-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-olympics">
+        Add Olympic Games Result
+      </button>
+    </div>
+
+    <!-- World Championship Results -->
+    <div class="row input-field">
+      <label>World Championship Results:</label>
+    </div>
+    <div class="row input-field">
+      <div class="row" id="worlds-results">
+        <div class="col-md-12" id="worlds-results-submitted">
+          {% for result in skater.results.worlds %}
+          <div class="row col-md-12" data-index="{{ loop.index }}">
+            Rank: {{ result.rank }}, Year: {{ result.year }}
+            <button
+              class="delete-btn btn lg white-txt"
+              data-type="worlds"
+              data-index="{{ loop.index }}"
+            >
+              X
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-12 result">
+          <input type="number" name="worlds-rank" placeholder="Rank" />
+          <input type="number" name="worlds-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="worlds-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-worlds">
+        Add World Championship Result
+      </button>
+    </div>
+
+    <!-- Grand Prix Final Results -->
+    <div class="row input-field">
+      <label>Grand Prix Final Results:</label>
+    </div>
+    <div class="row input-field">
+      <div class="row" id="gpf-results">
+        <div class="col-md-12" id="gpf-results-submitted">
+          {% for result in skater.results.gpf %}
+          <div class="row col-md-12" data-index="{{ loop.index }}">
+            Rank: {{ result.rank }}, Year: {{ result.year }}
+            <button
+              class="delete-btn btn lg white-txt"
+              data-type="gpf"
+              data-index="{{ loop.index }}"
+            >
+              X
+            </button>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-12 result">
+          <input type="number" name="gpf-rank" placeholder="Rank" />
+          <input type="number" name="gpf-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="gpf-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-gpf">
+        Add Grand Prix Final Result
+      </button>
+    </div>
+  </div>
 </div>
 
-<button class="btn accent white-txt" id="edit-btn">Submit edits</button>
-<button class="btn lg white-txt" id="discard-btn">Discard changes</button>
-
+<div class="row txt">
+  <button
+    class="col-md-4 btn accent white-txt mx-auto btn-margin"
+    id="edit-btn"
+  >
+    Submit edits
+  </button>
+  <button class="col-md-4 btn lg white-txt mx-auto btn-margin" id="discard-btn">
+    Discard changes
+  </button>
+</div>
 <script>
   var id = {{skater.id|tojson}}
-  console.log(id)
+  var results = {{skater.results|tojson}}
+  var olympics = results.olympics
+  var worlds = results.worlds
+  var gpf = results.gpf
 </script>
 <script
   type="text/javascript"

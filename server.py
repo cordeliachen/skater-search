@@ -146,6 +146,8 @@ def save_skater():
 
 @app.route("/edit/edit_skater", methods=["POST"])
 def edit_skater():
+    global data
+
     json_data = request.get_json()
     print(json_data)
     id = json_data["id"]
