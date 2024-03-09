@@ -1,3 +1,8 @@
+label {
+  margin-top: 20px; /* Adjust top margin as needed */
+  margin-bottom: 0px; /* Adjust bottom margin as needed */
+}
+
 .base {
   background-color: #b7eeff;
 }
@@ -36,8 +41,12 @@
 .title {
   font-size: 30px;
   font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.subtitle {
+  font-size: 24px;
 }
 
 .square-crop {
@@ -55,6 +64,11 @@
 .error-msg {
   color: #f55449;
   margin-left: 10px;
+}
+
+.form {
+  padding-left: 50px;
+  padding-bottom: 30px;
 }
 
 .info-card {
@@ -88,8 +102,18 @@
   margin: 0;
 }
 
-.comp-titles {
-  font-size: 24px;
+.bottom-border {
+  border-bottom: 1px solid #424242; /* Black border with 1px thickness */
+}
+
+.comp-results {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #424242;
+}
+
+.pd {
+  padding-right: 50px;
 }
 
 #home-image {
@@ -104,8 +128,6 @@
 #intro-txt {
   padding-left: 100px;
   padding-right: 100px;
-
-  padding-top: 50px;
 }
 
 #skater-name {
@@ -115,4 +137,9 @@
 
 #add-btn {
   margin-left: 10px;
+}
+
+#submit-btn {
+  margin: 20px;
+  padding: 20px;
 }

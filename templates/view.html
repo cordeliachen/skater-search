@@ -1,9 +1,9 @@
 {% extends "layout.html" %} {% block content %}
 
 <div class="row txt">
-  <div class="col-md-8">
+  <div class="col-md-9">
     <div
-      class="row title d-flex justify-content-between align-items-center base"
+      class="row title d-flex justify-content-between align-items-center bottom-border"
       id="skater-name"
     >
       <div>{{ skater.name }}</div>
@@ -29,35 +29,93 @@
         <div class="row bold">{{ skater.discipline }}</div>
       </div>
     </div>
-    <div class="row title">Competition history</div>
+  </div>
+  <div class="col-md-3">
+    <img src="{{ skater.image }}" alt="{{ skater.name }}" class="square-crop" />
+  </div>
+</div>
+
+<div class="row txt">
+  <div class="col-md-12">
+    <div class="row title subtitle bottom-border">Competition history</div>
     <div class="row">
-      <div class="col-md-4">
-        <div class="row comp-titles">Olympic Games</div>
+      <div class="col-md-4 comp-results text-center">
+        <div class="row">
+          <div class="col-md-12 subtitle bottom-border base text-center">
+            Olympic Games
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">Rank</div>
+          <div class="col-md-6 bottom-border">Year</div>
+        </div>
         {% for result in skater.results.olympics %}
-        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">{{ result.rank }}</div>
+          <div class="col-md-6 bottom-border">{{ result.year }}</div>
+        </div>
         {% endfor %}
       </div>
-      <div class="col-md-4">
-        <div class="row comp-titles">World Championships</div>
+      <div class="col-md-4 comp-results text-center">
+        <div class="row">
+          <div class="col-md-12 subtitle bottom-border base text-center">
+            World Championships
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">Rank</div>
+          <div class="col-md-6 bottom-border">Year</div>
+        </div>
         {% for result in skater.results.worlds %}
-        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">{{ result.rank }}</div>
+          <div class="col-md-6 bottom-border">{{ result.year }}</div>
+        </div>
         {% endfor %}
       </div>
-      <div class="col-md-4">
-        <div class="row comp-titles">Grand Prix Final</div>
+      <div class="col-md-4 comp-results text-center">
+        <div class="row">
+          <div class="col-md-12 subtitle bottom-border base text-center">
+            Grand Prix Final
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">Rank</div>
+          <div class="col-md-6 bottom-border">Year</div>
+        </div>
         {% for result in skater.results.gpf %}
-        <div class="row">{{ result.year }}: {{ result.rank }}</div>
+        <div class="row">
+          <div class="col-md-6 bottom-border">{{ result.rank }}</div>
+          <div class="col-md-6 bottom-border">{{ result.year }}</div>
+        </div>
         {% endfor %}
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <img src="{{ skater.image }}" alt="{{ skater.name }}" class="square-crop" />
-    <div class="row title">Personal details</div>
-    <div class="row">Coach: {{ skater.coach }}</div>
-    <div class="row">Began skating: {{ skater.began_skating }}</div>
-    <div class="row">Birthday: {{ skater.birthday }}</div>
-    <div class="row">Birth place: {{ skater.birthplace }}</div>
+</div>
+
+<div class="row txt">
+  <div class="col-md-12">
+    <div class="row title subtitle bottom-border">Personal details</div>
+    <div class="row">
+      <div class="col-md-3 pd">
+        <div class="row lg-txt">Coach:</div>
+        <div class="row">{{ skater.coach }}</div>
+      </div>
+      <div class="col-md-3 pd">
+        <div class="row lg-txt">Began skating:</div>
+        <div class="row">{{ skater.began_skating }}</div>
+      </div>
+      <div class="col-md-3 pd">
+        <div class="row lg-txt">Birthday:</div>
+        <div class="row">{{ skater.birthday }}</div>
+      </div>
+      <div class="col-md-3 pd">
+        <div class="row lg-txt">Birth place:</div>
+        <div class="row">{{ skater.birthplace }}</div>
+      </div>
+    </div>
   </div>
 </div>
+
 {% endblock %}

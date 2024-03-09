@@ -12,6 +12,16 @@ with open("data.json") as f:
 current_id = len(data)
 
 
+def sort_results(skaters_data):
+    # Sort results by year for each competition
+    for skater_info in skaters_data.values():
+        results = skater_info.get("results")
+        if results:
+            for competition, results_list in results.items():
+                results_list.sort(key=lambda x: x["year"], reverse=True)
+    return skaters_data
+
+
 def parse_date(date_str):
     # Parse the string date into a datetime object
     date_obj = datetime.strptime(date_str, "%B %d, %Y")
@@ -22,6 +32,9 @@ def parse_date(date_str):
     year = date_obj.year
 
     return month, day, year
+
+
+data = sort_results(data)
 
 
 # ROUTES
@@ -94,6 +107,8 @@ def save_skater():
     global current_id
 
     json_data = request.get_json()
+    print(json_data)
+
     name = json_data["name"]
     image = json_data["image"]
     country = json_data["country"]
@@ -103,6 +118,7 @@ def save_skater():
     age = json_data["age"]
     birthday = json_data["birthday"]
     birthplace = json_data["birthplace"]
+    results = json_data["results"]
 
     # Add new skater entry to the array with a new id
     current_id += 1
@@ -118,9 +134,11 @@ def save_skater():
         "age": age,
         "birthday": birthday,
         "birthplace": birthplace,
-        "results": {},
+        "results": results,
     }
     data[str(new_id)] = new_skater_entry
+
+    data = sort_results(data)
 
     # Send back the new skater entry's id
     return jsonify(id=new_id)
@@ -140,6 +158,7 @@ def edit_skater():
     age = json_data["age"]
     birthday = json_data["birthday"]
     birthplace = json_data["birthplace"]
+    results = json_data["results"]
 
     # Add new skater entry to the array with a new id
     new_skater_entry = {
@@ -153,9 +172,11 @@ def edit_skater():
         "age": age,
         "birthday": birthday,
         "birthplace": birthplace,
-        "results": {},
+        "results": results,
     }
     data[str(id)] = new_skater_entry
+
+    data = sort_results(data)
 
     # Send back the new skater entry's id
     return jsonify(id=id)

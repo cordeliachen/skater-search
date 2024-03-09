@@ -1,7 +1,69 @@
 $(document).ready(function () {
+  var olympicsResults = [];
+  var worldChampionshipResults = [];
+  var grandPrixFinalResults = [];
+  // Add Olympic Result input fields and store the result
+  $("#add-olympics").click(function () {
+    var rank = parseInt($("input[name='olympics-rank']").val().trim());
+    var year = parseInt($("input[name='olympics-year']").val().trim());
+    if (isNaN(rank) || isNaN(year) || year < 1990 || year > 2024) {
+      $("#olympics-error").text("Rank and year must be valid numbers").show();
+    } else {
+      olympicsResults.unshift({ rank: rank, year: year });
+      $("#olympics-results-submitted").append(
+        '<div class="col-md-12">Rank: ' + rank + ", Year: " + year + "</div>"
+      );
+      // Clear input fields
+      $("input[name='olympics-rank']").val("");
+      $("input[name='olympics-year']").val("");
+    }
+    console.log("olympics Results:", olympicsResults);
+  });
+
+  // Add World Championship Result input fields and store the result
+  $("#add-worlds").click(function () {
+    var rank = parseInt($("input[name='worlds-rank']").val().trim());
+    var year = parseInt($("input[name='worlds-year']").val().trim());
+    if (isNaN(rank) || isNaN(year) || year < 1990 || year > 2024) {
+      $("#worlds-error").text("Rank and year must be valid numbers").show();
+    } else {
+      worldChampionshipResults.unshift({ rank: rank, year: year });
+      $("#worlds-results-submitted").append(
+        '<div class="col-md-12">Rank: ' + rank + ", Year: " + year + "</div>"
+      );
+      // Clear input fields
+      $("input[name='worlds-rank']").val("");
+      $("input[name='worlds-year']").val("");
+    }
+    console.log("World Championship Results:", worldChampionshipResults);
+  });
+
+  // Add Grand Prix Final Result input fields and store the result
+  $("#add-gpf").click(function () {
+    var rank = parseInt($("input[name='gpf-rank']").val().trim());
+    var year = parseInt($("input[name='gpf-year']").val().trim());
+    if (isNaN(rank) || isNaN(year) || year < 1990 || year > 2024) {
+      $("#gpf-error").text("Rank and year must be valid numbers").show();
+    } else {
+      grandPrixFinalResults.unshift({ rank: rank, year: year });
+      $("#gpf-results-submitted").append(
+        '<div class="col-md-12">Rank: ' + rank + ", Year: " + year + "</div>"
+      );
+      // Clear input fields
+      $("input[name='gpf-rank']").val("");
+      $("input[name='gpf-year']").val("");
+    }
+    console.log("Grand Prix Final Results:", grandPrixFinalResults);
+  });
+
   $("#submit-btn").click(function () {
     var new_skater = checkAllFields();
     if (new_skater) {
+      new_skater.results = {
+        olympics: olympicsResults,
+        worlds: worldChampionshipResults,
+        gpf: grandPrixFinalResults,
+      };
       save_skater(new_skater);
     }
   });
@@ -129,6 +191,7 @@ $(document).ready(function () {
         birthplace: birthplace,
         results: {},
       };
+
       return new_skater;
     }
   }
@@ -185,7 +248,9 @@ $(document).ready(function () {
 
   function isBeganSkatingOk(began_skating) {
     if (isNaN(began_skating) || began_skating < 1990 || began_skating > 2024) {
-      $("#began-skating-error").text("Began skating year is invalid").show();
+      $("#began-skating-error")
+        .text("Began skating year must be a valid number")
+        .show();
       return false;
     } else {
       $("#began-skating-error").hide();
@@ -195,7 +260,7 @@ $(document).ready(function () {
 
   function isAgeOk(age) {
     if (isNaN(age) || age < 1 || age > 100) {
-      $("#age-error").text("Age is invalid").show();
+      $("#age-error").text("Age must be a valid number").show();
       return false;
     } else {
       $("#age-error").hide();

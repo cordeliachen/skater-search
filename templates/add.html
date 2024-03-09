@@ -1,80 +1,167 @@
 {% extends "layout.html" %} {% block content %}
-<div class="title txt">Add a new skater</div>
-<div class="txt" id="success-message"></div>
-<div class="txt">
-  <div class="row input-field">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" />
-    <div id="name-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="image">Image URL:</label>
-    <input type="text" id="image" name="image" />
-    <div id="image-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="country">Country:</label>
-    <input type="text" id="country" name="country" />
-    <div id="country-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="discipline">Discipline:</label>
-    <input type="text" id="discipline" name="discipline" />
-    <div id="discipline-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="coach">Coach:</label>
-    <input type="text" id="coach" name="coach" />
-    <div id="coach-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="began_skating">Began Skating:</label>
-    <input type="number" id="began_skating" name="began_skating" />
-    <div id="began-skating-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" />
-    <div id="age-error" class="error-msg"></div>
-  </div>
-  <div class="row input-field">
-    <label> Birthday:</label>
-    <select id="birthday-month" class="form-select">
-      <option value="" disabled selected>Month</option>
-      <option value="January">January</option>
-      <option value="February">February</option>
-      <option value="March">March</option>
-      <option value="April">April</option>
-      <option value="May">May</option>
-      <option value="June">June</option>
-      <option value="July">July</option>
-      <option value="August">August</option>
-      <option value="September">September</option>
-      <option value="October">October</option>
-      <option value="November">November</option>
-      <option value="December">December</option>
-    </select>
-    <input
-      type="number"
-      id="birthday-day"
-      class="form-control col-md-1"
-      placeholder="Day"
-    />
-    <input
-      type="number"
-      id="birthday-year"
-      class="form-control col-md-1"
-      placeholder="Year"
-    />
-    <div id="birthday-error" class="error-msg"></div>
-  </div>
+<div class="row title txt">Add a new skater</div>
+<div class="row txt" id="success-message"></div>
+<div class="row txt">
+  <div class="col-md-6 base form">
+    <div class="row title subtitle txt">Required information</div>
+    <div class="row input-field">
+      <label for="name">Name:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="name" name="name" />
+      <div id="name-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="image">Image URL:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="image" name="image" />
+      <div id="image-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="country">Country:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="country" name="country" />
+      <div id="country-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="discipline">Discipline:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="discipline" name="discipline" />
+      <div id="discipline-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="coach">Coach:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="coach" name="coach" />
+      <div id="coach-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="began_skating">Began Skating (year):</label>
+    </div>
+    <div class="row input-field">
+      <input type="number" id="began_skating" name="began_skating" />
+      <div id="began-skating-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label for="age">Age:</label>
+    </div>
+    <div class="row input-field">
+      <input type="number" id="age" name="age" />
+      <div id="age-error" class="error-msg"></div>
+    </div>
+    <div class="row input-field">
+      <label> Birthday:</label>
+    </div>
+    <div class="row input-field">
+      <select id="birthday-month" class="form-select">
+        <option value="" disabled selected>Month</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+      <input
+        type="number"
+        id="birthday-day"
+        class="form-control col-md-3"
+        placeholder="Day"
+      />
+      <input
+        type="number"
+        id="birthday-year"
+        class="form-control col-md-3"
+        placeholder="Year"
+      />
+      <div id="birthday-error" class="error-msg"></div>
+    </div>
 
-  <div class="row input-field">
-    <label for="birthplace">Birthplace:</label>
-    <input type="text" id="birthplace" name="birthplace" />
-    <div id="birthplace-error" class="error-msg"></div>
+    <div class="row input-field">
+      <label for="birthplace">Birthplace:</label>
+    </div>
+    <div class="row input-field">
+      <input type="text" id="birthplace" name="birthplace" />
+      <div id="birthplace-error" class="error-msg"></div>
+    </div>
   </div>
-  <button class="btn accent white-txt" id="submit-btn">Submit</button>
+  <div class="col-md-6 form">
+    <div class="row title subtitle txt">Competition history (optional)</div>
+    <div class="row input-field">
+      <label>Olympic Games Results:</label>
+    </div>
+    <!-- Olympic Results -->
+    <div class="row input-field">
+      <div class="row" id="olympics-results">
+        <div class="col-md-12" id="olympics-results-submitted"></div>
+        <div class="col-md-12 result">
+          <input type="number" name="olympics-rank" placeholder="Rank" />
+          <input type="number" name="olympics-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="olympics-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-olympics">
+        Add olympic Games Result
+      </button>
+    </div>
+
+    <!-- World Championship Results -->
+    <div class="row input-field">
+      <label>World Championship Results:</label>
+    </div>
+    <div class="row input-field">
+      <div class="row" id="worlds-results">
+        <div class="col-md-12" id="worlds-results-submitted"></div>
+        <div class="col-md-12 result">
+          <input type="number" name="worlds-rank" placeholder="Rank" />
+          <input type="number" name="worlds-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="worlds-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-worlds">
+        Add World Championship Result
+      </button>
+    </div>
+
+    <!-- Grand Prix Final Results -->
+    <div class="row input-field">
+      <label>Grand Prix Final Results:</label>
+    </div>
+    <div class="row input-field">
+      <div class="row" id="gpf-results">
+        <div class="col-md-12" id="gpf-results-submitted"></div>
+        <div class="col-md-12 result">
+          <input type="number" name="gpf-rank" placeholder="Rank" />
+          <input type="number" name="gpf-year" placeholder="Year" />
+        </div>
+      </div>
+      <div id="gpf-error" class="error-msg" style="display: none"></div>
+    </div>
+    <div class="row">
+      <button class="btn lg white-txt" id="add-gpf">
+        Add Grand Prix Final Result
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row txt">
+  <button class="col-md-12 btn accent white-txt text-center" id="submit-btn">
+    Submit
+  </button>
 </div>
 <script
   type="text/javascript"
